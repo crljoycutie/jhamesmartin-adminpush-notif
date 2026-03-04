@@ -14,7 +14,7 @@ setInterval(() => {
         notifications = [];
         console.log("Figuro Master: Notifications auto-cleared (1min cycle).");
     }
-}, 60000); 
+}, 30000); 
 
 // 1. GET API - Para sa mobile app or frontend
 app.get('/api/get-notifications', (req, res) => {
