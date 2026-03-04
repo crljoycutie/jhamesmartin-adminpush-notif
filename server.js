@@ -4,19 +4,17 @@ const app = express();
 
 app.use(bodyParser.json());
 
-// Temporary storage (mabubura ito kapag nag-restart ang Vercel serverless function)
-let notifications = [
-  { id: 1, title: "System", message: "Maligayang pagdating sa Push API!", date: new Date() }
-];
+// 1. GINAWANG EMPTY ARRAY (Wala munang laman sa simula)
+let notifications = [];
 
-// 1. GET API - Dito kukunin ng app mo ang mga notifications
+// 2. GET API - Dito kukunin ng app mo ang mga notifications
 // Endpoint: /api/get-notifications
 app.get('/api/get-notifications', (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*'); // Para payagan ang kahit anong app na kumonekta
+  res.setHeader('Access-Control-Allow-Origin', '*'); 
   res.status(200).json(notifications);
 });
 
-// 2. ADMIN DASHBOARD - UI para sa pag-push
+// 3. ADMIN DASHBOARD - UI para sa pag-push
 // Endpoint: /route/admin_push
 app.get('/route/admin_push', (req, res) => {
   res.send(`
@@ -88,7 +86,7 @@ app.get('/route/admin_push', (req, res) => {
   `);
 });
 
-// 3. ADMIN POST HANDLER - Dito tinatanggap ng server ang bagong notification
+// 4. ADMIN POST HANDLER - Dito tinatanggap ng server ang bagong notification
 app.post('/api/admin_push', (req, res) => {
   const { title, message } = req.body;
   if (title && message) {
